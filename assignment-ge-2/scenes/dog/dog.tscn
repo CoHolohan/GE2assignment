@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bcxto5svgmshc"]
+
+[node name="Dog" type="Node3D"]

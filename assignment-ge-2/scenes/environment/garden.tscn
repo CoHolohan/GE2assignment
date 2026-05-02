@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dbc6uthn01gor"]
+
+[node name="Garden" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
