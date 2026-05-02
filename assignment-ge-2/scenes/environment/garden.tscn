@@ -1,9 +1,51 @@
-[gd_scene format=3 uid="uid://dbc6uthn01gor"]
+[gd_scene load_steps=4 format=3 uid="uid://dbc6uthn01gor"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34ce1"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sevej"]
+material = SubResource("StandardMaterial3D_34ce1")
+size = Vector2(5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydxtp"]
+size = Vector3(5.194092, 0.17858887, 5.563019)
 
 [node name="Garden" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="ground" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+mesh = SubResource("PlaneMesh_sevej")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103637695, -0.046569824, -0.09831238)
+shape = SubResource("BoxShape3D_ydxtp")
+
+[node name="fence" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="fence"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence"]
+
+[node name="foodbowl" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="foodbowl"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="foodbowl"]
+
+[node name="waterbowl" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="waterbowl"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="waterbowl"]
+
+[node name="doghouse" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="doghouse"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doghouse"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
