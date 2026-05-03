@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbc6uthn01gor"]
+[gd_scene load_steps=14 format=3 uid="uid://dbc6uthn01gor"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34ce1"]
 vertex_color_use_as_albedo = true
@@ -6,10 +6,32 @@ albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sevej"]
 material = SubResource("StandardMaterial3D_34ce1")
-size = Vector2(10, 10)
+size = Vector2(50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ydxtp"]
 size = Vector3(8.644165, 0.17858887, 7.510994)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_34ce1"]
+height = 0.29370117
+radius = 0.21435547
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sevej"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0ir8"]
+albedo_color = Color(0.7529412, 0.22352941, 0.16862746, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vtxit"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys1uq"]
+albedo_color = Color(0.54509807, 0.36862746, 0.23529412, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_34ce1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ov3ul"]
+albedo_color = Color(0.23137255, 0.16470589, 0.101960786, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_34ce1"]
+size = Vector3(1.2271118, 1.5529785, 1.2728882)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sevej"]
 albedo_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
@@ -22,29 +44,72 @@ albedo_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 [node name="ground" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0065039396, -0.01359725, 0.0041725636)
 mesh = SubResource("PlaneMesh_sevej")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1326294, -0.046569824, -0.3530693)
 shape = SubResource("BoxShape3D_ydxtp")
 
-[node name="foodbowl" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="foodbowl"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="foodbowl"]
-
 [node name="waterbowl" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="waterbowl"]
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="waterbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70650697, 0.13000488, -1.9659501)
+shape = SubResource("CylinderShape3D_34ce1")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="waterbowl"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.1, 0, 0, 0, 0.4, -0.6966427, 0.0917615, -1.9601018)
+mesh = SubResource("CylinderMesh_sevej")
+material = SubResource("StandardMaterial3D_i0ir8")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.1, 0, 0, 0, 0.35, -0.70064723, 0.14276913, -1.9648768)
+operation = 2
+mesh = SubResource("CylinderMesh_vtxit")
+
+[node name="foodbowl" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52973866, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="foodbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70650697, 0.13000488, -1.9659501)
+shape = SubResource("CylinderShape3D_34ce1")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="foodbowl"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="foodbowl/CSGCombiner3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.1, 0, 0, 0, 0.4, -0.6966427, 0.0917615, -1.9601018)
+mesh = SubResource("CylinderMesh_sevej")
+material = SubResource("StandardMaterial3D_i0ir8")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="foodbowl/CSGCombiner3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.1, 0, 0, 0, 0.35, -0.70064723, 0.14276913, -1.9648768)
+operation = 2
+mesh = SubResource("CylinderMesh_vtxit")
 
 [node name="doghouse" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="doghouse"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="doghouse"]
+
+[node name="walls" type="CSGBox3D" parent="doghouse/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8258969, 0.45118833, -1.6615353)
+size = Vector3(1.2, 0.9, 1.2)
+material = SubResource("StandardMaterial3D_ys1uq")
+
+[node name="roof" type="CSGMesh3D" parent="doghouse/CSGCombiner3D"]
+transform = Transform3D(1.4, 0, 0, 0, 0.6, 0, 0, 0, 1.4, -1.8227311, 1.1951381, -1.6640878)
+mesh = SubResource("PrismMesh_34ce1")
+material = SubResource("StandardMaterial3D_ov3ul")
+
+[node name="door" type="CSGBox3D" parent="doghouse/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8097515, 0.33200836, -1.1467992)
+operation = 2
+size = Vector3(0.6, 0.6, 0.6)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doghouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8207939, 0.7591553, -1.6972344)
+shape = SubResource("BoxShape3D_34ce1")
 
 [node name="fence" type="Node3D" parent="."]
 
