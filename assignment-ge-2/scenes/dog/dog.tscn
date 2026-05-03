@@ -1,4 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcxto5svgmshc"]
+[gd_scene load_steps=23 format=3 uid="uid://bcxto5svgmshc"]
+
+[ext_resource type="Script" uid="uid://viujnfc1ml61" path="res://scripts/dog/dog_fsm.gd" id="1_1k8nb"]
+[ext_resource type="Script" uid="uid://bqwrx7owypiwe" path="res://scripts/dog/dog_needs.gd" id="2_5mrfh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76odd"]
 albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
@@ -61,9 +64,15 @@ albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnddm"]
 albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_76odd"]
+radius = 0.2993164
+height = 1.1011658
+
 [node name="Dog" type="CharacterBody3D"]
+script = ExtResource("1_1k8nb")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09669477, 0)
 
 [node name="torso" type="CSGCylinder3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.22, 0)
@@ -173,3 +182,16 @@ material = SubResource("StandardMaterial3D_m06wb")
 transform = Transform3D(1.2, 0, 0, 0, 0.6, 0, 0, 0, 1.2, 0, -0.10359529, 0)
 radius = 0.05
 material = SubResource("StandardMaterial3D_rnddm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.22722551, -0.11780572)
+shape = SubResource("CapsuleShape3D_76odd")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="dogneeds" type="Node3D" parent="."]
+script = ExtResource("2_5mrfh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
