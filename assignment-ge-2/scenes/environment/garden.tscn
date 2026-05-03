@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbc6uthn01gor"]
+[gd_scene load_steps=16 format=3 uid="uid://dbc6uthn01gor"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34ce1"]
 vertex_color_use_as_albedo = true
@@ -19,8 +19,12 @@ radius = 0.21435547
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0ir8"]
 albedo_color = Color(0.7529412, 0.22352941, 0.16862746, 1)
+metallic = 0.8
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_vtxit"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtxit"]
+albedo_color = Color(0.2901961, 0.15686275, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys1uq"]
 albedo_color = Color(0.54509807, 0.36862746, 0.23529412, 1)
@@ -39,6 +43,12 @@ albedo_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydxtp"]
 albedo_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u2gm"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0, 0.7607843, 1, 1)
+
 [node name="Garden" type="Node3D"]
 
 [node name="ground" type="StaticBody3D" parent="."]
@@ -50,24 +60,6 @@ mesh = SubResource("PlaneMesh_sevej")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1326294, -0.046569824, -0.3530693)
 shape = SubResource("BoxShape3D_ydxtp")
-
-[node name="waterbowl" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="waterbowl"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70650697, 0.13000488, -1.9659501)
-shape = SubResource("CylinderShape3D_34ce1")
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="waterbowl"]
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D"]
-transform = Transform3D(0.4, 0, 0, 0, 0.1, 0, 0, 0, 0.4, -0.6966427, 0.0917615, -1.9601018)
-mesh = SubResource("CylinderMesh_sevej")
-material = SubResource("StandardMaterial3D_i0ir8")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D"]
-transform = Transform3D(0.35, 0, 0, 0, 0.1, 0, 0, 0, 0.35, -0.70064723, 0.14276913, -1.9648768)
-operation = 2
-mesh = SubResource("CylinderMesh_vtxit")
 
 [node name="foodbowl" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52973866, 0, 0)
@@ -83,10 +75,20 @@ transform = Transform3D(0.4, 0, 0, 0, 0.1, 0, 0, 0, 0.4, -0.6966427, 0.0917615, 
 mesh = SubResource("CylinderMesh_sevej")
 material = SubResource("StandardMaterial3D_i0ir8")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="foodbowl/CSGCombiner3D"]
-transform = Transform3D(0.35, 0, 0, 0, 0.1, 0, 0, 0, 0.35, -0.70064723, 0.14276913, -1.9648768)
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="foodbowl/CSGCombiner3D/CSGMesh3D"]
+transform = Transform3D(0.875, 0, 0, 0, 1, 0, 0, 0, 0.875, -0.010011345, 0.5100762, -0.011937141)
 operation = 2
 mesh = SubResource("CylinderMesh_vtxit")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="foodbowl/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69729567, 0.118700445, -1.9594262)
+radius = 0.17236328
+height = 0.1
+sides = 16
+material = SubResource("StandardMaterial3D_vtxit")
+
+[node name="foodspot" type="Marker3D" parent="foodbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6940875, 0, -1.6396563)
 
 [node name="doghouse" type="StaticBody3D" parent="."]
 
@@ -509,3 +511,32 @@ material = SubResource("StandardMaterial3D_ydxtp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.178, 2.58)
 size = Vector3(1, 0.1, 0.05)
 material = SubResource("StandardMaterial3D_ydxtp")
+
+[node name="waterbowl" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058751583, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="waterbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70650697, 0.13000488, -1.9659501)
+shape = SubResource("CylinderShape3D_34ce1")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="waterbowl"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.1, 0, 0, 0, 0.4, -0.6966427, 0.0917615, -1.9601018)
+mesh = SubResource("CylinderMesh_sevej")
+material = SubResource("StandardMaterial3D_i0ir8")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D/CSGMesh3D"]
+transform = Transform3D(0.875, 0, 0, 0, 1, 0, 0, 0, 0.875, -0.010011345, 0.5100762, -0.011937141)
+operation = 2
+mesh = SubResource("CylinderMesh_vtxit")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="waterbowl/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6926075, 0.12167871, -1.9682693)
+radius = 0.17871094
+height = 0.1
+sides = 15
+material = SubResource("StandardMaterial3D_4u2gm")
+
+[node name="waterspot" type="Marker3D" parent="waterbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70414686, 0, -1.619538)

@@ -1,3 +1,175 @@
-[gd_scene format=3 uid="uid://bcxto5svgmshc"]
+[gd_scene load_steps=20 format=3 uid="uid://bcxto5svgmshc"]
 
-[node name="Dog" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76odd"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1k8nb"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mrfh"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oubdd"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afgdo"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikmn5"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ci4a"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8nhp"]
+albedo_color = Color(0.101960786, 0.039215688, 0, 1)
+metallic = 0.1
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dilyc"]
+albedo_color = Color(0.101960786, 0.039215688, 0, 1)
+metallic = 0.1
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwjgf"]
+albedo_color = Color(0.101960786, 0.039215688, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqm8h"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_jjqjt"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftcts"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3flqx"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7less"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0w5a7"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udfxp"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m06wb"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnddm"]
+albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
+
+[node name="Dog" type="CharacterBody3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="torso" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.22, 0)
+radius = 0.13
+height = 0.5
+sides = 16
+material = SubResource("StandardMaterial3D_76odd")
+
+[node name="chest" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21732129, -0.28)
+radius = 0.14
+material = SubResource("StandardMaterial3D_1k8nb")
+
+[node name="rump" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0.25608554)
+radius = 0.13174473
+material = SubResource("StandardMaterial3D_5mrfh")
+
+[node name="head" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, -0.42)
+radius = 0.13
+material = SubResource("StandardMaterial3D_oubdd")
+
+[node name="snout" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.43365905, -0.90107703, 0, 0.90107703, 0.43365905, 0, 0.32, -0.54)
+radius = 0.055
+height = 0.14
+sides = 16
+material = SubResource("StandardMaterial3D_afgdo")
+
+[node name="earL" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.5795555, -0.41411048, 0, 0.15529144, 1.5454813, 0, 0, 0, 0.5, -0.1, 0.31630176, -0.42770934)
+radius = 0.07
+material = SubResource("StandardMaterial3D_ikmn5")
+
+[node name="earR" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.5795555, 0.41411048, 0, -0.15529144, 1.5454813, 0, 0, 0, 0.5, 0.1, 0.31451288, -0.43357575)
+radius = 0.07
+material = SubResource("StandardMaterial3D_3ci4a")
+
+[node name="eyeL" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, 0.38, -0.5)
+radius = 0.035
+material = SubResource("StandardMaterial3D_n8nhp")
+
+[node name="eyeR" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06, 0.38, -0.5)
+radius = 0.035
+material = SubResource("StandardMaterial3D_dilyc")
+
+[node name="nose" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009752959, 0.31, -0.61)
+radius = 0.025
+material = SubResource("StandardMaterial3D_dwjgf")
+
+[node name="tail" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5313986, -0.8471219, 0, 0.8471219, 0.5313986, 0, 0.33, 0.42)
+radius = 0.025
+height = 0.22
+sides = 16
+material = SubResource("StandardMaterial3D_rqm8h")
+
+[node name="legFR" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.1, -0.2)
+radius = 0.045
+height = 0.18
+sides = 16
+material = SubResource("ORMMaterial3D_jjqjt")
+
+[node name="pawfr" type="CSGSphere3D" parent="CSGCombiner3D/legFR"]
+transform = Transform3D(1.2, 0, 0, 0, 0.6, 0, 0, 0, 1.2, 0, -0.10359529, 0)
+radius = 0.05
+material = SubResource("StandardMaterial3D_ftcts")
+
+[node name="legFL" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.1, -0.2)
+radius = 0.045
+height = 0.18
+sides = 16
+material = SubResource("StandardMaterial3D_3flqx")
+
+[node name="pawfl" type="CSGSphere3D" parent="CSGCombiner3D/legFL"]
+transform = Transform3D(1.2, 0, 0, 0, 0.6, 0, 0, 0, 1.2, 0, -0.10359529, 0)
+radius = 0.05
+material = SubResource("StandardMaterial3D_7less")
+
+[node name="legBL" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.1, 0.2)
+radius = 0.045
+height = 0.18
+sides = 16
+material = SubResource("StandardMaterial3D_0w5a7")
+
+[node name="pawbl" type="CSGSphere3D" parent="CSGCombiner3D/legBL"]
+transform = Transform3D(1.2, 0, 0, 0, 0.6, 0, 0, 0, 1.2, 0, -0.10359529, 0)
+radius = 0.05
+material = SubResource("StandardMaterial3D_udfxp")
+
+[node name="legBR" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.1, 0.2)
+radius = 0.045
+height = 0.18
+sides = 16
+material = SubResource("StandardMaterial3D_m06wb")
+
+[node name="pawbr" type="CSGSphere3D" parent="CSGCombiner3D/legBR"]
+transform = Transform3D(1.2, 0, 0, 0, 0.6, 0, 0, 0, 1.2, 0, -0.10359529, 0)
+radius = 0.05
+material = SubResource("StandardMaterial3D_rnddm")
