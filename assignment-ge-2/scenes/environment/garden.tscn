@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbc6uthn01gor"]
+[gd_scene load_steps=21 format=3 uid="uid://dbc6uthn01gor"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34ce1"]
 vertex_color_use_as_albedo = true
@@ -43,11 +43,28 @@ albedo_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydxtp"]
 albedo_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_sevej"]
+size = Vector3(5.2769775, 1, 0.26501465)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ys1uq"]
+size = Vector3(5.140442, 1, 0.24316406)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ov3ul"]
+size = Vector3(5.1621094, 1, 0.19845581)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0ir8"]
+size = Vector3(5.1605835, 1, 0.24829102)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u2gm"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_color = Color(0, 0.7607843, 1, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_34ce1"]
+agent_radius = 0.4
+agent_max_climb = 0.1
+agent_max_slope = 30.0
 
 [node name="Garden" type="Node3D"]
 
@@ -128,6 +145,10 @@ material = SubResource("StandardMaterial3D_ydxtp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.178, 2.58)
 size = Vector3(1, 0.1, 0.05)
 material = SubResource("StandardMaterial3D_ydxtp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015319824, 0, 2.5580094)
+shape = SubResource("BoxShape3D_sevej")
 
 [node name="fence2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0015016, 0, 0)
@@ -269,6 +290,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.178, 2.58)
 size = Vector3(1, 0.1, 0.05)
 material = SubResource("StandardMaterial3D_ydxtp")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.070221, 0, 2.527813)
+shape = SubResource("BoxShape3D_ys1uq")
+
 [node name="fence9" type="Node3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0019097328, 0, 1.0056753)
 
@@ -369,6 +394,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.178, 2.58)
 size = Vector3(1, 0.1, 0.05)
 material = SubResource("StandardMaterial3D_ydxtp")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence13/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0810544, 0, 2.546511)
+shape = SubResource("BoxShape3D_ov3ul")
+
 [node name="fence14" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.0144281, 0, 0.012177587)
 
@@ -428,6 +457,10 @@ material = SubResource("StandardMaterial3D_ydxtp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.178, 2.58)
 size = Vector3(1, 0.1, 0.05)
 material = SubResource("StandardMaterial3D_ydxtp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019866973, 0, 2.5483413)
+shape = SubResource("BoxShape3D_i0ir8")
 
 [node name="fence17" type="Node3D" parent="."]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -0.024930477, 0, -0.9847965)
@@ -534,3 +567,6 @@ radius = 0.17871094
 height = 0.1
 sides = 15
 material = SubResource("StandardMaterial3D_4u2gm")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_34ce1")
