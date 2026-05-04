@@ -87,9 +87,6 @@ height = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_vtxit")
 
-[node name="foodspot" type="Marker3D" parent="foodbowl"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6940875, 0, -1.6396563)
-
 [node name="doghouse" type="StaticBody3D" parent="."]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="doghouse"]
@@ -537,6 +534,3 @@ radius = 0.17871094
 height = 0.1
 sides = 15
 material = SubResource("StandardMaterial3D_4u2gm")
-
-[node name="waterspot" type="Marker3D" parent="waterbowl"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70414686, 0, -1.619538)

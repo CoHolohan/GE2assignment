@@ -1,22 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj6ldltb27ygb"]
+[gd_scene load_steps=6 format=3 uid="uid://dj6ldltb27ygb"]
 
-[ext_resource type="PackedScene" uid="uid://kb8oo4fhxr13" path="res://xr_origin_3d.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bcxto5svgmshc" path="res://scenes/dog/dog.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dbc6uthn01gor" path="res://scenes/environment/garden.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bqwrx7owypiwe" path="res://scripts/dog/dog_needs.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://bs1ignmx77e4t" path="res://scenes/debug_player.gd" id="5_tbgi4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jyhfs"]
+size = Vector3(1, 1.5619507, 0.54956055)
 
 [node name="main" type="Node3D"]
-
-[node name="XROrigin3D" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 4.887554, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
-[node name="Dog" parent="WorldEnvironment" instance=ExtResource("2_sugp2")]
+[node name="Dog" parent="WorldEnvironment" node_paths=PackedStringArray("food_bowl_marker", "water_bowl_marker", "doghouse_marker") instance=ExtResource("2_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2628074, 0, 0)
+food_bowl_marker = NodePath("../foodbowlmarker")
+water_bowl_marker = NodePath("../waterbowlmarker")
+doghouse_marker = NodePath("../doghousemarker")
 
 [node name="DogNeeds" type="Node" parent="WorldEnvironment/Dog"]
 script = ExtResource("3_tbgi4")
 
 [node name="Garden" parent="WorldEnvironment" instance=ExtResource("3_jyhfs")]
+
+[node name="foodbowlmarker" type="Marker3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12606412, 0, -1.5893283)
+
+[node name="waterbowlmarker" type="Marker3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77272797, 0.036469698, -1.6621993)
+
+[node name="doghousemarker" type="Marker3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7291174, 0, -0.6301245)
+
+[node name="debugPlayer" type="CharacterBody3D" parent="."]
+script = ExtResource("5_tbgi4")
+
+[node name="Camera3D" type="Camera3D" parent="debugPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2666358, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="debugPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8204651, -0.012573242)
+shape = SubResource("BoxShape3D_jyhfs")

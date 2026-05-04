@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 # Node references
-@onready var needs = $DogNeeds
+@onready var needs = $dogneeds
 @onready var nav_agent = $NavigationAgent3D
 @onready var anim_player = $AnimationPlayer
 @onready var audio = $AudioStreamPlayer3D

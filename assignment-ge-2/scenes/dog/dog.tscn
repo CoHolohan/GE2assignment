@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bcxto5svgmshc"]
+[gd_scene load_steps=24 format=3 uid="uid://bcxto5svgmshc"]
 
 [ext_resource type="Script" uid="uid://viujnfc1ml61" path="res://scripts/dog/dog_fsm.gd" id="1_1k8nb"]
 [ext_resource type="Script" uid="uid://bqwrx7owypiwe" path="res://scripts/dog/dog_needs.gd" id="2_5mrfh"]
+[ext_resource type="Script" uid="uid://cmxidnktkbsk5" path="res://scripts/dog/dog_animation.gd" id="2_oubdd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76odd"]
 albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
@@ -65,11 +66,25 @@ albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
 albedo_color = Color(0.7764706, 0.5254902, 0.25882354, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_76odd"]
-radius = 0.2993164
-height = 1.1011658
+radius = 0.3017578
+height = 1.1067352
 
 [node name="Dog" type="CharacterBody3D"]
 script = ExtResource("1_1k8nb")
+
+[node name="DogAnimation" type="Node3D" parent="." node_paths=PackedStringArray("body", "head", "tail", "ear_left", "ear_right", "leg_fl", "leg_fr", "leg_bl", "leg_br", "fsm")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3782322, -0.12059045)
+script = ExtResource("2_oubdd")
+body = NodePath("../CSGCombiner3D/torso")
+head = NodePath("../CSGCombiner3D/head")
+tail = NodePath("../CSGCombiner3D/tail")
+ear_left = NodePath("../CSGCombiner3D/earL")
+ear_right = NodePath("../CSGCombiner3D/earR")
+leg_fl = NodePath("../CSGCombiner3D/legFL")
+leg_fr = NodePath("../CSGCombiner3D/legFR")
+leg_bl = NodePath("../CSGCombiner3D/legBL")
+leg_br = NodePath("../CSGCombiner3D/legBR")
+fsm = NodePath("..")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09669477, 0)
@@ -129,7 +144,7 @@ radius = 0.025
 material = SubResource("StandardMaterial3D_dwjgf")
 
 [node name="tail" type="CSGCylinder3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5313986, -0.8471219, 0, 0.8471219, 0.5313986, 0, 0.33, 0.42)
+transform = Transform3D(1, 0, 0, 0, 0.80901694, 0.5877852, 0, -0.5877852, 0.80901694, 0, 0.14411095, 0.39390334)
 radius = 0.025
 height = 0.22
 sides = 16
@@ -184,7 +199,7 @@ radius = 0.05
 material = SubResource("StandardMaterial3D_rnddm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.22722551, -0.11780572)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3782322, -0.12059045)
 shape = SubResource("CapsuleShape3D_76odd")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

@@ -4,6 +4,6 @@
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 
-[node name="XRController3D" type="XRController3D" parent="XRCamera3D"]
+[node name="XRController3D" type="XRController3D" parent="."]
 
-[node name="XRController3D2" type="XRController3D" parent="XRCamera3D"]
+[node name="XRController3D2" type="XRController3D" parent="."]
