@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbc6uthn01gor"]
+[gd_scene load_steps=20 format=3 uid="uid://dbc6uthn01gor"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34ce1"]
 vertex_color_use_as_albedo = true
@@ -9,7 +9,7 @@ material = SubResource("StandardMaterial3D_34ce1")
 size = Vector2(50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ydxtp"]
-size = Vector3(8.644165, 0.17858887, 7.510994)
+size = Vector3(8.644165, 0.058166504, 7.510994)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_34ce1"]
 height = 0.29370117
@@ -61,11 +61,6 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_color = Color(0, 0.7607843, 1, 1)
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_34ce1"]
-agent_radius = 0.4
-agent_max_climb = 0.1
-agent_max_slope = 30.0
-
 [node name="Garden" type="Node3D"]
 
 [node name="ground" type="StaticBody3D" parent="."]
@@ -75,7 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0065039396, -0.01359725, 0.
 mesh = SubResource("PlaneMesh_sevej")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1326294, -0.046569824, -0.3530693)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1326294, -0.03105694, -0.3530693)
 shape = SubResource("BoxShape3D_ydxtp")
 
 [node name="foodbowl" type="StaticBody3D" parent="."]
@@ -567,6 +562,3 @@ radius = 0.17871094
 height = 0.1
 sides = 15
 material = SubResource("StandardMaterial3D_4u2gm")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_34ce1")

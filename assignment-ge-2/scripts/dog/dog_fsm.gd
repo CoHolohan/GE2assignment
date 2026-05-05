@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var food_bowl_marker: Marker3D
 @export var water_bowl_marker: Marker3D
 @export var doghouse_marker: Marker3D
-@export var player_camera: XRCamera3D
+@export var player_camera: Camera3D
 
 # State tracking
 var current_state: int = DogStates.State.IDLE
@@ -24,6 +24,9 @@ const WANDER_RADIUS = 3.0
 const GRAVITY = -9.8
 
 func _ready() -> void:
+	# Wait one frame for the NavigationServer to fully initialise
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	change_state(DogStates.State.IDLE)
 
 func _physics_process(delta: float) -> void:
@@ -145,10 +148,19 @@ func change_state(new_state: int) -> void:
 	print("Dog state: ", DogStates.STATE_NAMES[new_state])
 
 func move_toward_target(target: Vector3) -> void:
+	if nav_agent.is_navigation_finished():
+		return
+
 	nav_agent.target_position = target
+
+	# Wait until the navigation server has set the path
+	if not nav_agent.is_target_reachable():
+		return
+
 	var next_pos = nav_agent.get_next_path_position()
 	var direction = (next_pos - global_position).normalized()
 	direction.y = 0.0
+
 	velocity.x = direction.x * MOVE_SPEED
 	velocity.z = direction.z * MOVE_SPEED
 
@@ -158,7 +170,9 @@ func move_toward_target(target: Vector3) -> void:
 func get_random_wander_point() -> Vector3:
 	var angle = randf() * TAU
 	var radius = randf_range(0.5, WANDER_RADIUS)
-	return global_position + Vector3(cos(angle) * radius, 0, sin(angle) * radius)
+	var point = global_position + Vector3(cos(angle) * radius, 0, sin(angle) * radius)
+	print("Wander target: ", point)
+	return point
 
 func is_close_to_player(distance: float) -> bool:
 	if not player_camera:
