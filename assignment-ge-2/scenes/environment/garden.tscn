@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dbc6uthn01gor"]
+[gd_scene load_steps=24 format=3 uid="uid://dbc6uthn01gor"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34ce1"]
 albedo_color = Color(0, 0.39215687, 0, 1)
@@ -24,6 +24,28 @@ metallic = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtxit"]
 albedo_color = Color(0.2901961, 0.15686275, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8l1h"]
+albedo_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cq324"]
+inherit_velocity_ratio = 0.5
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.1999999
+gravity = Vector3(0, -4, 0)
+scale_min = 0.049999997
+scale_max = 0.099999994
+
+[sub_resource type="SphereMesh" id="SphereMesh_34ce1"]
+
+[sub_resource type="Skin" id="Skin_sevej"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u2gm"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0, 0.7607843, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys1uq"]
 albedo_color = Color(0.54509807, 0.36862746, 0.23529412, 1)
@@ -53,12 +75,6 @@ size = Vector3(5.1621094, 1, 0.19845581)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i0ir8"]
 size = Vector3(5.1605835, 1, 0.24829102)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u2gm"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_color = Color(0, 0.7607843, 1, 1)
 
 [node name="Garden" type="Node3D"]
 
@@ -96,6 +112,60 @@ radius = 0.17236328
 height = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_vtxit")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="foodbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70771384, 0.18688858, -1.9847866)
+material_override = SubResource("StandardMaterial3D_r8l1h")
+emitting = false
+amount = 16
+lifetime = 1.57
+one_shot = true
+speed_scale = 2.2
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cq324")
+draw_pass_1 = SubResource("SphereMesh_34ce1")
+draw_skin = SubResource("Skin_sevej")
+
+[node name="waterbowl" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058751583, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="waterbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70650697, 0.13000488, -1.9659501)
+shape = SubResource("CylinderShape3D_34ce1")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="waterbowl"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.1, 0, 0, 0, 0.4, -0.6966427, 0.0917615, -1.9601018)
+mesh = SubResource("CylinderMesh_sevej")
+material = SubResource("StandardMaterial3D_i0ir8")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D/CSGMesh3D"]
+transform = Transform3D(0.875, 0, 0, 0, 1, 0, 0, 0, 0.875, -0.010011345, 0.5100762, -0.011937141)
+operation = 2
+mesh = SubResource("CylinderMesh_vtxit")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="waterbowl/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6926075, 0.12167871, -1.9682693)
+radius = 0.17871094
+height = 0.1
+sides = 15
+material = SubResource("StandardMaterial3D_4u2gm")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="waterbowl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70771384, 0.18688858, -1.9847866)
+material_override = SubResource("StandardMaterial3D_r8l1h")
+emitting = false
+amount = 16
+lifetime = 1.57
+one_shot = true
+speed_scale = 2.2
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cq324")
+draw_pass_1 = SubResource("SphereMesh_34ce1")
+draw_skin = SubResource("Skin_sevej")
 
 [node name="doghouse" type="StaticBody3D" parent="."]
 
@@ -534,29 +604,3 @@ material = SubResource("StandardMaterial3D_ydxtp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.178, 2.58)
 size = Vector3(1, 0.1, 0.05)
 material = SubResource("StandardMaterial3D_ydxtp")
-
-[node name="waterbowl" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058751583, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="waterbowl"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70650697, 0.13000488, -1.9659501)
-shape = SubResource("CylinderShape3D_34ce1")
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="waterbowl"]
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D"]
-transform = Transform3D(0.4, 0, 0, 0, 0.1, 0, 0, 0, 0.4, -0.6966427, 0.0917615, -1.9601018)
-mesh = SubResource("CylinderMesh_sevej")
-material = SubResource("StandardMaterial3D_i0ir8")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="waterbowl/CSGCombiner3D/CSGMesh3D"]
-transform = Transform3D(0.875, 0, 0, 0, 1, 0, 0, 0, 0.875, -0.010011345, 0.5100762, -0.011937141)
-operation = 2
-mesh = SubResource("CylinderMesh_vtxit")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="waterbowl/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6926075, 0.12167871, -1.9682693)
-radius = 0.17871094
-height = 0.1
-sides = 15
-material = SubResource("StandardMaterial3D_4u2gm")

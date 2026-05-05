@@ -12,6 +12,10 @@ extends CharacterBody3D
 @export var doghouse_marker: Marker3D
 @export var player_camera: Camera3D
 
+# Particle references
+@export var eating_particles: GPUParticles3D
+@export var drinking_particles: GPUParticles3D
+
 # State tracking
 var current_state: int = DogStates.State.IDLE
 var previous_state: int = DogStates.State.IDLE
@@ -116,6 +120,9 @@ func tick_hungry() -> void:
 			bowl_timer = 0.0
 			needs.feed()
 			sounds.play_eating()
+			if eating_particles:
+				eating_particles.restart()
+				eating_particles.emitting = true
 			change_state(DogStates.State.IDLE)
 
 func tick_thirsty() -> void:
@@ -128,7 +135,11 @@ func tick_thirsty() -> void:
 			bowl_timer = 0.0
 			needs.give_water()
 			sounds.play_eating()
+			if drinking_particles:
+				drinking_particles.restart()
+				drinking_particles.emitting = true
 			change_state(DogStates.State.IDLE)
+
 func tick_tired() -> void:
 	move_toward_target(doghouse_marker.global_position)
 	if nav_agent.is_navigation_finished():

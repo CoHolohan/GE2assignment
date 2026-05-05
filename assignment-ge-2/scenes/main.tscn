@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj6ldltb27ygb"]
+[gd_scene load_steps=16 format=3 uid="uid://dj6ldltb27ygb"]
 
 [ext_resource type="PackedScene" uid="uid://bcxto5svgmshc" path="res://scenes/dog/dog.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dbc6uthn01gor" path="res://scenes/environment/garden.tscn" id="3_jyhfs"]
@@ -19,6 +19,38 @@ agent_radius = 0.2
 agent_max_climb = 0.1
 agent_max_slope = 30.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
+albedo_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tefeu"]
+inherit_velocity_ratio = 0.5
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.1999999
+gravity = Vector3(0, -4, 0)
+scale_min = 0.049999997
+scale_max = 0.099999994
+
+[sub_resource type="SphereMesh" id="SphereMesh_o6xl0"]
+
+[sub_resource type="Skin" id="Skin_tipki"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
+albedo_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_choun"]
+inherit_velocity_ratio = 0.5
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.1999999
+gravity = Vector3(0, -4, 0)
+scale_min = 0.049999997
+scale_max = 0.099999994
+
+[sub_resource type="SphereMesh" id="SphereMesh_ya4ey"]
+
+[sub_resource type="Skin" id="Skin_eb6dy"]
+
 [node name="main" type="Node3D"]
 
 [node name="debugPlayer" type="CharacterBody3D" parent="."]
@@ -37,6 +69,34 @@ navigation_mesh = SubResource("NavigationMesh_jyhfs")
 [node name="Garden" parent="NavigationRegion3D" instance=ExtResource("3_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02688992, 0)
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="NavigationRegion3D/Garden"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70771384, 0.18688858, -1.9847866)
+material_override = SubResource("StandardMaterial3D_tbgi4")
+emitting = false
+amount = 16
+lifetime = 1.57
+one_shot = true
+speed_scale = 2.2
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_tefeu")
+draw_pass_1 = SubResource("SphereMesh_o6xl0")
+draw_skin = SubResource("Skin_tipki")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="NavigationRegion3D/Garden"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70771384, 0.18688858, -1.9847866)
+material_override = SubResource("StandardMaterial3D_85g3d")
+emitting = false
+amount = 16
+lifetime = 1.57
+one_shot = true
+speed_scale = 2.2
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_choun")
+draw_pass_1 = SubResource("SphereMesh_ya4ey")
+draw_skin = SubResource("Skin_eb6dy")
+
 [node name="foodbowlmarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12606412, 0, -1.5893283)
 
@@ -46,12 +106,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7291174, 0, -0.6301245)
 [node name="waterbowlmarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77272797, 0.036469698, -1.6621993)
 
-[node name="Dog" parent="." node_paths=PackedStringArray("food_bowl_marker", "water_bowl_marker", "doghouse_marker", "player_camera") instance=ExtResource("2_sugp2")]
+[node name="Dog" parent="." node_paths=PackedStringArray("food_bowl_marker", "water_bowl_marker", "doghouse_marker", "player_camera", "eating_particles", "drinking_particles") instance=ExtResource("2_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.072, 0.5, 0.597)
 food_bowl_marker = NodePath("../foodbowlmarker")
 water_bowl_marker = NodePath("../waterbowlmarker")
 doghouse_marker = NodePath("../doghousemarker")
 player_camera = NodePath("../debugPlayer/Camera3D")
+eating_particles = NodePath("../NavigationRegion3D/Garden/GPUParticles3D2")
+drinking_particles = NodePath("../NavigationRegion3D/Garden/GPUParticles3D")
 
 [node name="DogNeeds" type="Node" parent="Dog"]
 script = ExtResource("3_tbgi4")
