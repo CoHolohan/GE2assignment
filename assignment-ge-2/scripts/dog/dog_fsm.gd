@@ -17,6 +17,8 @@ var current_state: int = DogStates.State.IDLE
 var previous_state: int = DogStates.State.IDLE
 var state_timer: float = 0.0
 var wander_target: Vector3 = Vector3.ZERO
+var bowl_timer: float = 0.0
+const BOWL_WAIT_TIME: float = 2.0
 
 # Movement
 const MOVE_SPEED = 0.8
@@ -106,15 +108,25 @@ func tick_happy() -> void:
 
 func tick_hungry() -> void:
 	move_toward_target(food_bowl_marker.global_position)
-	if nav_agent.is_navigation_finished():
-		needs.feed()
-		change_state(DogStates.State.IDLE)
+	if global_position.distance_to(food_bowl_marker.global_position) < 0.8:
+		bowl_timer += get_physics_process_delta_time()
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if bowl_timer >= BOWL_WAIT_TIME:
+			bowl_timer = 0.0
+			needs.feed()
+			change_state(DogStates.State.IDLE)
 
 func tick_thirsty() -> void:
 	move_toward_target(water_bowl_marker.global_position)
-	if nav_agent.is_navigation_finished():
-		needs.give_water()
-		change_state(DogStates.State.IDLE)
+	if global_position.distance_to(water_bowl_marker.global_position) < 0.8:
+		bowl_timer += get_physics_process_delta_time()
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if bowl_timer >= BOWL_WAIT_TIME:
+			bowl_timer = 0.0
+			needs.give_water()
+			change_state(DogStates.State.IDLE)
 
 func tick_tired() -> void:
 	move_toward_target(doghouse_marker.global_position)
@@ -148,24 +160,20 @@ func change_state(new_state: int) -> void:
 	print("Dog state: ", DogStates.STATE_NAMES[new_state])
 
 func move_toward_target(target: Vector3) -> void:
-	if nav_agent.is_navigation_finished():
-		return
-
 	nav_agent.target_position = target
 
-	# Wait until the navigation server has set the path
-	if not nav_agent.is_target_reachable():
-		return
-
 	var next_pos = nav_agent.get_next_path_position()
-	var direction = (next_pos - global_position).normalized()
+	var direction = (next_pos - global_position)
 	direction.y = 0.0
 
-	velocity.x = direction.x * MOVE_SPEED
-	velocity.z = direction.z * MOVE_SPEED
-
-	if direction.length() > 0.01:
+	if direction.length() > 0.2:
+		direction = direction.normalized()
+		velocity.x = direction.x * MOVE_SPEED
+		velocity.z = direction.z * MOVE_SPEED
 		look_at(global_position + direction, Vector3.UP)
+	else:
+		velocity.x = 0.0
+		velocity.z = 0.0
 
 func get_random_wander_point() -> Vector3:
 	var angle = randf() * TAU

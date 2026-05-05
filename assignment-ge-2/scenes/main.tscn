@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj6ldltb27ygb"]
+[gd_scene load_steps=7 format=3 uid="uid://dj6ldltb27ygb"]
 
-[ext_resource type="Script" uid="uid://cefg0nyjor56w" path="res://scripts/xr/xr_manager.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bcxto5svgmshc" path="res://scenes/dog/dog.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dbc6uthn01gor" path="res://scenes/environment/garden.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bqwrx7owypiwe" path="res://scripts/dog/dog_needs.gd" id="3_tbgi4"]
@@ -9,18 +8,17 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_jyhfs"]
 size = Vector3(0.543396, 1.5619507, 0.54956055)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_jyhfs"]
-size = Vector2(10, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
-size = Vector3(10, 0.1, 10)
-
 [sub_resource type="NavigationMesh" id="NavigationMesh_jyhfs"]
-agent_height = 0.4
-agent_radius = 0.15
+vertices = PackedVector3Array(-2.6220825, 0.1731101, -2.855497, -2.0220826, 0.1731101, -2.855497, -2.1220825, 0.1731101, -3.555497, -2.9220824, 0.1731101, -2.655497, -4.1220827, 0.1731101, -3.555497, -4.1220827, 0.1731101, 3.5445032, -2.7220826, 0.1731101, 2.844503, -2.9220824, 0.1731101, 2.644503, 2.0779176, 0.1731101, 3.5445032, 1.9779177, 0.1731101, 2.844503, 2.6779175, 0.1731101, 2.844503, 2.8779178, 0.1731101, 2.644503, 4.077918, 0.1731101, 3.5445032, 4.077918, 0.1731101, -3.555497, 2.6779175, 0.1731101, -2.855497, 2.8779178, 0.1731101, -2.655497, 0.17791748, 0.1731101, -1.5554969, -0.9220824, 0.1731101, -1.455497, -1.0220826, 0.1731101, -0.8554969, 2.2779174, 0.1731101, -2.255497, 0.2779174, 0.1731101, -2.155497, -2.3220825, 0.1731101, -0.8554969, -2.3220825, 0.1731101, 2.344503, 2.2779174, 0.1731101, 2.344503, -2.3220825, 1.6731102, -2.155497, -2.3220825, 1.6731102, -1.255497, -1.3220825, 1.6731102, -1.255497, -1.3220825, 1.6731102, -2.155497, -2.2220824, 0.1731101, -2.055497, -2.2220824, 0.1731101, -1.6554968, -1.5220826, 0.1731101, -1.6554968, -1.5220826, 0.1731101, -2.055497)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 5), PackedInt32Array(7, 5, 3), PackedInt32Array(3, 5, 4), PackedInt32Array(8, 9, 10), PackedInt32Array(10, 11, 8), PackedInt32Array(8, 11, 12), PackedInt32Array(15, 14, 13), PackedInt32Array(1, 2, 14), PackedInt32Array(14, 2, 13), PackedInt32Array(15, 13, 11), PackedInt32Array(11, 13, 12), PackedInt32Array(18, 17, 16), PackedInt32Array(16, 20, 19), PackedInt32Array(18, 22, 21), PackedInt32Array(16, 19, 18), PackedInt32Array(18, 19, 23), PackedInt32Array(18, 23, 22), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29)]
+cell_size = 0.1
+cell_height = 0.1
+agent_height = 0.1
+agent_radius = 0.2
+agent_max_climb = 0.1
+agent_max_slope = 30.0
 
 [node name="main" type="Node3D"]
-script = ExtResource("1_tbgi4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 4.887554, 0)
@@ -35,18 +33,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2666358, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0035233498, 0.8204651, -0.012573242)
 shape = SubResource("BoxShape3D_jyhfs")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("PlaneMesh_jyhfs")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_tbgi4")
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02688992, 0)
 navigation_mesh = SubResource("NavigationMesh_jyhfs")
+
+[node name="Garden" parent="NavigationRegion3D" instance=ExtResource("3_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02688992, 0)
 
 [node name="foodbowlmarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12606412, 0, -1.5893283)
@@ -57,10 +48,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7291174, 0, -0.6301245)
 [node name="waterbowlmarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77272797, 0.036469698, -1.6621993)
 
-[node name="Garden" parent="." instance=ExtResource("3_jyhfs")]
-
 [node name="Dog" parent="." node_paths=PackedStringArray("food_bowl_marker", "water_bowl_marker", "doghouse_marker", "player_camera") instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2628074, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.072, 0.5, 0.597)
 food_bowl_marker = NodePath("../foodbowlmarker")
 water_bowl_marker = NodePath("../waterbowlmarker")
 doghouse_marker = NodePath("../doghousemarker")

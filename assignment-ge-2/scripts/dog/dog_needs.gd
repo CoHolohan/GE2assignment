@@ -7,8 +7,8 @@ extends Node
 @export var happiness: float = 0.8    # 1.0 = very happy
 
 # How fast each need depletes per second
-const HUNGER_RATE   = 0.004
-const THIRST_RATE   = 0.006
+const HUNGER_RATE   = 0.10
+const THIRST_RATE   = 0.15
 const ENERGY_RATE   = 0.003
 const HAPPY_RATE    = 0.002           # slowly gets lonely without attention
 
