@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://dj6ldltb27ygb"]
+[gd_scene load_steps=20 format=3 uid="uid://dj6ldltb27ygb"]
 
 [ext_resource type="PackedScene" uid="uid://bcxto5svgmshc" path="res://scenes/dog/dog.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dbc6uthn01gor" path="res://scenes/environment/garden.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bqwrx7owypiwe" path="res://scripts/dog/dog_needs.gd" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://bs1ignmx77e4t" path="res://scenes/debug_player.gd" id="5_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://ck7ffvhvw4wdj" path="res://assets/sounds/freesound_community-outside-ambience-with-birds-61606.mp3" id="5_tefeu"]
+[ext_resource type="ArrayMesh" uid="uid://l6y0ijqvb410" path="res://assets/models/grass/LowPolyGrass.obj" id="6_tefeu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jyhfs"]
 size = Vector3(0.543396, 1.5619507, 0.54956055)
@@ -144,3 +145,119 @@ shadow_enabled = true
 stream = ExtResource("5_tefeu")
 volume_db = -6.0
 autoplay = true
+
+[node name="LowPolyGrass" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.75354767, 0.009512782, 3.34028)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.25122738, 0.009512782, 3.34028)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.4314146, 0.009512782, 3.34028)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.0238963, 0.009512782, 3.34028)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 2.9301395, 0.009512782, 3.34028)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.5097399, 0.009512782, 3.34028)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.5097399, 0.009512782, 2.245479)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.5097399, 0.009512782, 0.802917)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.5097399, 0.009512782, 1.3825183)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass10" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, 3.5097399, 0.009512782, -2.043566)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass19" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -3.7803478, 0.009512782, -2.043566)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass20" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -3.7803478, 0.009512782, -3.0868473)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass21" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -2.9302669, 0.009512782, -3.0868473)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass22" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -3.5098677, 0.009512782, -1.0389247)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass23" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -3.9864283, 0.009512782, -0.3562836)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass24" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -3.2651477, 0.009512782, 0.2361973)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass25" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -3.2651477, 0.009512782, 1.3052387)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass26" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -4.3599496, 0.009512782, 1.3052387)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass27" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -4.3599496, 0.009512782, 2.1810799)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass28" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -3.4197083, 0.009512782, 2.1810799)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass29" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -2.4033115, -0.023043513, 3.2760003)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass11" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, 3.5097399, 0.009512782, -0.2403636)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass12" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, 2.8399792, 0.009512782, -3.0353274)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass13" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, 2.8399792, 0.009512782, -2.2625263)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass14" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, 0.26397634, 0.009512782, -3.4861279)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass15" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, 1.0110171, 0.009512782, -3.1254873)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass16" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -2.0286663, 0.009512782, -3.1254873)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass17" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -1.2429855, 0.009512782, -3.2414074)
+mesh = ExtResource("6_tefeu")
+
+[node name="LowPolyGrass18" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25980762, -6.5567085e-09, -0.15, 6.5567085e-09, 0.29999998, -2.4469967e-08, 0.15, -2.4469967e-08, -0.25980762, -1.2429855, 0.009512782, -3.2414074)
+mesh = ExtResource("6_tefeu")
