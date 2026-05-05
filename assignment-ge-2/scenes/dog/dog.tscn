@@ -210,7 +210,6 @@ shape = SubResource("CapsuleShape3D_76odd")
 path_desired_distance = 0.5
 target_desired_distance = 0.5
 radius = 0.15
-debug_enabled = true
 
 [node name="Bark" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37281424, -0.5467407)
