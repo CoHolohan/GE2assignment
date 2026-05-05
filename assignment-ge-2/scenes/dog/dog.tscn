@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bqwrx7owypiwe" path="res://scripts/dog/dog_needs.gd" id="2_5mrfh"]
 [ext_resource type="Script" uid="uid://cmxidnktkbsk5" path="res://scripts/dog/dog_animation.gd" id="2_oubdd"]
 [ext_resource type="AudioStream" uid="uid://bj3qu5ntb3yy" path="res://assets/sounds/dog_bark.mp3" id="3_ikmn5"]
-[ext_resource type="Script" uid="uid://djpc1gd6h7e1h" path="res://scenes/dog/dog_sounds.gd" id="5_3ci4a"]
+[ext_resource type="Script" uid="uid://djpc1gd6h7e1h" path="res://scripts/dog/dog_sounds.gd" id="5_3ci4a"]
 [ext_resource type="AudioStream" uid="uid://rqemkmt61tai" path="res://assets/sounds/dog_whine.mp3" id="5_n8nhp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76odd"]

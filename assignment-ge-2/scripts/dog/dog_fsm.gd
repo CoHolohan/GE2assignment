@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var needs = $dogneeds
 @onready var nav_agent = $NavigationAgent3D
 @onready var anim_player = $AnimationPlayer
-@onready var audio = $AudioStreamPlayer3D
+@onready var sounds = $DogSounds
 
 # References to key garden locations - assign these in the Inspector
 @export var food_bowl_marker: Marker3D
@@ -115,6 +115,7 @@ func tick_hungry() -> void:
 		if bowl_timer >= BOWL_WAIT_TIME:
 			bowl_timer = 0.0
 			needs.feed()
+			sounds.play_eating()
 			change_state(DogStates.State.IDLE)
 
 func tick_thirsty() -> void:
@@ -126,8 +127,8 @@ func tick_thirsty() -> void:
 		if bowl_timer >= BOWL_WAIT_TIME:
 			bowl_timer = 0.0
 			needs.give_water()
+			sounds.play_eating()
 			change_state(DogStates.State.IDLE)
-
 func tick_tired() -> void:
 	move_toward_target(doghouse_marker.global_position)
 	if nav_agent.is_navigation_finished():
