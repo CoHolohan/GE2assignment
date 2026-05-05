@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj6ldltb27ygb"]
+[gd_scene load_steps=8 format=3 uid="uid://dj6ldltb27ygb"]
 
 [ext_resource type="PackedScene" uid="uid://bcxto5svgmshc" path="res://scenes/dog/dog.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dbc6uthn01gor" path="res://scenes/environment/garden.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bqwrx7owypiwe" path="res://scripts/dog/dog_needs.gd" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://bs1ignmx77e4t" path="res://scenes/debug_player.gd" id="5_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://ck7ffvhvw4wdj" path="res://assets/sounds/freesound_community-outside-ambience-with-birds-61606.mp3" id="5_tefeu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jyhfs"]
 size = Vector3(0.543396, 1.5619507, 0.54956055)
@@ -19,9 +20,6 @@ agent_max_climb = 0.1
 agent_max_slope = 30.0
 
 [node name="main" type="Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 4.887554, 0)
 
 [node name="debugPlayer" type="CharacterBody3D" parent="."]
 script = ExtResource("5_tbgi4")
@@ -57,3 +55,13 @@ player_camera = NodePath("../debugPlayer/Camera3D")
 
 [node name="DogNeeds" type="Node" parent="Dog"]
 script = ExtResource("3_tbgi4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, 0, 4.887554, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_tefeu")
+volume_db = -6.0
+autoplay = true
