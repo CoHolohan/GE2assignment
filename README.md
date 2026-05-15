@@ -34,7 +34,7 @@ Main Scene Navigation mesh
 This project is a virtual dog simulation built in Godot 4, featuring a dog named Lola who lives in a garden environment.  
 The player can walk around the garden and interact with Lola, whose behaviour is driven by a Finite State Machine (FSM) and a Navigation Mesh.
  
-Lola has three core needs — **hunger**, **thirst**, and **happiness** — which decrease naturally over time. She will autonomously navigate to her food or water bowl when her needs drop low enough, and her happiness increases when she follows the player around the garden.  
+Lola has three core needs, **hunger**, **thirst**, and **happiness**, which decrease naturally over time. She will autonomously navigate to her food or water bowl when her needs drop low enough, and her happiness increases when she follows the player around the garden.  
 The game features particle effects, bark sound effects recorded from a real dog, and CSG-based animations.
 
 
