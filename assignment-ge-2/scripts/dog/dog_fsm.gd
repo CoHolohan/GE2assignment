@@ -16,6 +16,8 @@ extends CharacterBody3D
 @export var eating_particles: GPUParticles3D
 @export var drinking_particles: GPUParticles3D
 
+@export var ball: RigidBody3D
+
 # State tracking
 var current_state: int = DogStates.State.IDLE
 var previous_state: int = DogStates.State.IDLE
@@ -23,16 +25,19 @@ var state_timer: float = 0.0
 var wander_target: Vector3 = Vector3.ZERO
 var bowl_timer: float = 0.0
 const BOWL_WAIT_TIME: float = 2.0
+var ball_target: Vector3 = Vector3.ZERO
 
 # Movement
-const MOVE_SPEED = 0.8
-const WANDER_RADIUS = 3.0
+const MOVE_SPEED = 0.7
+const WANDER_RADIUS = 2.0
 const GRAVITY = -9.8
 
 func _ready() -> void:
-	# Wait one frame for the NavigationServer to fully initialise
 	await get_tree().physics_frame
 	await get_tree().physics_frame
+	if ball:
+		ball.ball_thrown.connect(_on_ball_thrown)
+		ball.ball_stopped.connect(_on_ball_stopped)
 	change_state(DogStates.State.IDLE)
 
 func _physics_process(delta: float) -> void:
@@ -42,6 +47,13 @@ func _physics_process(delta: float) -> void:
 	run_state_machine(delta)
 	move_and_slide()
 
+func _on_ball_thrown() -> void:
+	change_state(DogStates.State.PLAYING)
+
+func _on_ball_stopped(stop_position: Vector3) -> void:
+	ball_target = stop_position
+	change_state(DogStates.State.FETCHING)
+	
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -66,6 +78,10 @@ func run_state_machine(_delta: float) -> void:
 			tick_tired()
 		DogStates.State.SLEEPING:
 			tick_sleeping()
+		DogStates.State.PLAYING:
+			tick_playing()
+		DogStates.State.FETCHING:
+			tick_fetching()
 
 # ─── STATE TICKS ────────────────────────────────────────────
 
@@ -82,6 +98,15 @@ func tick_idle() -> void:
 		change_state(DogStates.State.TIRED)
 	elif state_timer <= 0.0:
 		change_state(DogStates.State.WANDERING)
+
+func tick_playing() -> void:
+	if ball:
+		move_toward_target(ball.global_position)
+
+func tick_fetching() -> void:
+	move_toward_target(ball_target)
+	if global_position.distance_to(ball_target) < 0.5:
+		change_state(DogStates.State.HAPPY)
 
 func tick_wandering() -> void:
 	move_toward_target(wander_target)
@@ -100,7 +125,7 @@ func tick_wandering() -> void:
 func tick_curious() -> void:
 	move_toward_target(player_camera.global_position)
 	look_at_player()
-	if not is_close_to_player(2.5):
+	if not is_close_to_player(1.5):
 		change_state(DogStates.State.IDLE)
 
 func tick_happy() -> void:
