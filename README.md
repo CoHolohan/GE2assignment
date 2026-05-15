@@ -19,12 +19,15 @@ https://youtu.be/ooi7YS1BUjk
 ## Screenshots
 
 Lola
+
 <img width="405" height="305" alt="image" src="https://github.com/user-attachments/assets/3fbda02b-db75-49a9-b033-666299e5069c" />
 
 Garden
+
 <img width="1316" height="543" alt="image" src="https://github.com/user-attachments/assets/21208f86-e561-4542-845e-a3f2995c1e6a" />
 
 Main Scene Navigation mesh
+
 <img width="1228" height="513" alt="image" src="https://github.com/user-attachments/assets/c92e7b55-07ba-47ac-8d37-434338cfd582" />
 
 
